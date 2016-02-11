@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800");
+
+html {
+	background: url("../images/background.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	background-color: transparent;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h2, h3 {
+	color: #fff;
+}
+
+h3 {
+	font-size: 1.2em;
+	font-weight: 400;
+	line-height: 1.6em;
+    text-align: center;
+    margin: 30px 0;
+    letter-spacing: -1px;
+}
+
+.formError {
+	left: auto!important;
+	top: 30px!important;
+	right: 0!important;
+}
+
+.formError .formErrorContent {
+	border-radius: 0;
+	border: none;
+}
+
+.formError .formErrorArrow {
+	display: none;
+}
+
+.iphone-slide {
+    margin: 0 auto;
+}
+
+.logo {
+	text-align: center;
+    margin-top: 25px;
+}
+
+.logo img {
+    width: 118px;
+    height: auto;
+}
+
+.btn {
+	border-radius: 0;
+	padding: 14px 30px;
+	border: none;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+
+.blurb {
+	text-align: justify;
+}
+
+.btn:hover {
+	background-color: #FFDE00 !important;
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.btn.driving {
+	background-color: #FFFFFF;;
+}
+
+
+
+.map {
+	height: 240px;
+	margin-bottom: 30px;
+}
+
+#mapdesktop_container {
+	position: relative;
+	
+}
+
+#mapdesktop_container:after {
+	content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+[id*="_zoom_slider"]{
+	left: 10px;
+	top: 10px;
+	background-color: #FFDE00;
+}
+
+[id*="_zoom_slider"],
+[id*="_zoom_slider"] .esriSimpleSliderIncrementButton,
+[id*="_zoom_slider"] .esriSimpleSliderDecrementButton {
+	border-radius: 0;
+	border: none;
+}
+
+.alert {
+	margin-top: 20px;
+}
+
+.colophon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.colophon img {
+	margin-right: 6px;
+	height: 22px;
+    display: inline-block;
+    cursor: pointer;
+	opacity: .3;
+}
+
+.colophon img:last-child {
+	margin-right: 0;
+}
+
+@media screen and (min-width: 992px) {
+
+	form {
+		padding-top: 1px;
+	}
+
+	h3 {
+		text-align: left;
+	}
+
+	.container {
+		position: relative;
+		height: 100%;
+	}
+
+	.record-slide-iphone {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 90%;
+	}
+
+	#record-slide img.iphone-slide {
+		height: 100%;
+		width: auto;
+		max-width: none;
+	}
+
+	.slide-text {
+		position: absolute;
+		top: 10%;
+		right: 40px;
+		padding-left: 2%;
+	}
+
+	.logo {
+		margin-top: 0;
+	}
+
+	.msg {
+		position: absolute;
+		top: 200px;
+		left: 350px;
+	}
+}
+
+@media (min-width: 1400px) {
+	.container {
+	    width: 1320px;
+	}
+}

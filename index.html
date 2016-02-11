@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+
+	<title>On My Way</title>
+
+	<link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/validationEngine.jquery.css" type="text/css"/>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/forms.css" />
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/handlebars.min.js"></script>
+	<script src="https://js.arcgis.com/3.15compact/" type="text/javascript"></script>
+	<script src="js/languages/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
+
+
+ </head>
+
+ <body>
+
+	<section id="record-slide">
+
+		<div class="container">
+
+			<div id="content" class="row content">
+
+				<div id="small-form" class="col-xs-12 slide-text visible-xs visible-sm">
+
+					<div class="logo">
+						<img src="images/logo.png" alt="On My Way" />
+					</div>
+
+					<h3 class="blurb">
+                        Tell someone that you're on your way! We'll send them a text message and let them know how far away you are, and when they can expect you. 
+                    </h3>
+
+					<form id="form-sm" style="text-align: center;">
+						<div class="form-group">
+							<label for="name" style="left: 0;">Your name</label>
+							<input id="name" placeholder="e.g. David Bayer" type="text" class="validate[required] form-control" autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<label for="postcode" style="left: 0;">Friends postcode</label>
+							<input id="postcode" placeholder="e.g. HP21 7QG" type="text" class="validate[required,custom[postcode]] form-control" autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<label for="phonenum" style="left: 0;">Friends mobile number</label>
+							<input id="phonenum" placeholder="e.g. 07812345678" type="text" class="validate[required,custom[phone]] form-control" autocomplete="off" />
+						</div>
+						<input class="btn btn-default driving" type="button" value="Driving" />
+						<input class="btn btn-default walking" type="button" value="Walking" />
+					</form>
+
+				</div>
+
+				<div class="col-xs-12 col-md-7 visible-md visible-lg record-slide-iphone">
+					<img src="images/record_iphone.png" width="792" alt="Choose soundtrack and record video" class="img-responsive iphone-slide">
+				</div>
+
+				<div id="large-form" class="col-md-4 col-lg-5 slide-text visible-md visible-lg">
+
+					<img src="images/logo.png" class="logo" alt="On My Way" />
+
+					<h3 class="blurb">
+                        Tell someone that you're on your way! We'll send them a text message and let them know how far away you are, and when they can expect you. 
+                    </h3>
+
+					<form id="form-lg">
+						<div class="form-group">
+							<label for="name">Your name</label>
+							<input id="name" placeholder="e.g. David Bayer" name="userName" type="text" class="validate[required] form-control" autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<label for="postcode">Friends postcode</label>
+							<input id="postcode" placeholder="e.g. HP21 7QG" name="postCode" type="text"  class="validate[required,custom[postcode]] form-control" autocomplete="off" />
+						</div>
+						<div class="form-group">
+							<label for="phonenum">Friends mobile number</label>
+							<input id="phonenum" placeholder="e.g. 07812345678" name="phoneNum"  type="text" class="validate[required,custom[phone]] form-control" autocomplete="off" />
+						</div>
+						<input name="driving" class="btn btn-default driving" type="button" value="Driving" />
+						<input name="walking" class="btn btn-default walking" type="button" value="Walking" />
+					</form>
+
+				</div>
+
+			</div>
+
+        </div>
+
+	</section>
+
+	<div class="colophon">
+		<img src="images/logo-esri.png" title="Esri - ArcGIS API">
+		<img src="images/logo-twilio.png" title="Twilio - SMS Service">
+		<img src="images/logo-html5.png" title="HTML5 Geolocation">
+	</div>
+
+    <script src="js/onmyway.js"></script>
+    <script id="error-template" type="text/x-handlebars-template">
+        <div class="col-xs-12 slide-text visible-xs visible-sm">
+
+            <div class="logo">
+                <img src="images/logo.png" alt="On My Way" />
+            </div>
+
+            <div class="alert alert-success">Something went wrong :(</div>
+
+            <h3>Error: {{error}}</h3>
+
+            <input class="btn btn-default driving" type="button" value="Send Another" onclick="window.location.href='index.html'" />
+
+        </div>
+
+        <div class="col-xs-12 col-md-7 visible-md visible-lg record-slide-iphone">
+            <img src="images/record_iphone_response.png" width="792" class="img-responsive iphone-slide">
+        </div>
+
+        <div class="col-md-4 col-lg-5 slide-text visible-md visible-lg">
+
+            <img src="images/logo.png" class="logo" alt="On My Way" />
+
+            <div class="alert alert-success">Something went wrong :(</div>
+
+            <h3>Error: {{error}}</h3>
+
+            <div id="mapdesktop"></div>
+
+            <input class="btn btn-default driving" type="button" value="Send Another" onclick="window.location.href='index.html'" />
+
+        </div>
+
+
+    </script>
+    <script id="response-template" type="text/x-handlebars-template">
+
+            <div class="col-xs-12 slide-text visible-xs visible-sm">
+
+                <div class="logo">
+                    <img src="images/logo.png" alt="On My Way" />
+                </div>
+
+                <div class="alert alert-success">Message sent to: {{mobileNumber}}</div>
+
+                <h3>You are {{travelDistance}} miles away from your friend. As you are {{mode}}, it should take you about {{travelTime}} to arrive.</h3>
+
+                <input class="btn btn-default driving" type="button" value="Send Another" onclick="window.location.href='index.html'" />
+
+            </div>
+
+            <div class="col-xs-12 col-md-7 visible-md visible-lg record-slide-iphone">
+                <img src="images/record_iphone_response.png" width="792" class="img-responsive iphone-slide">
+            </div>
+
+            <div class="col-md-4 col-lg-5 slide-text visible-md visible-lg">
+
+                <img src="images/logo.png" class="logo" alt="On My Way" />
+
+                <div class="alert alert-success">Message sent to: {{mobileNumber}}</div>
+
+                <h3>You are {{travelDistance}} miles away from your friend. As you are {{mode}}, it should take you about {{travelTime}} to arrive.</h3>
+
+                <div id="mapdesktop"></div>
+
+                <input class="btn btn-default driving" type="button" value="Send Another" onclick="window.location.href='index.html'" />
+
+            </div>
+
+    </script>
+ </body>
+</html>
